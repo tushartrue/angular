@@ -1,0 +1,43 @@
+  user works!
+ 
+  
+  <button class="btn-primary">Click</button>
+
+  <ngb-pagination [collectionSize]="70" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+
+  <div *ngIf="!showUser">
+  <div class="container content">
+  <div class="row">
+    <div class="col-md-2">ID</div>
+    <div class="col-md-2">Login</div>
+    <div class="col-md-2">Node ID</div>
+    <div class="col-md-4">Avtar URL</div>
+    <div class="col-md-2">Details</div>
+  </div>
+
+  <div *ngIf="isLoading" >
+    Loading ....
+  </div>
+  
+  <div class="row" *ngFor="let usr of user">
+    <div class="col-md-2">{{usr.id}}</div>
+    <div class="col-md-2">{{usr.login}}</div>
+    <div class="col-md-2">{{usr.node_id}}</div>
+    <div class="col-md-2">{{usr.organizations_url}}</div>
+    <div class="col-md-2">
+      <button class="btn-primary" (click)='getUserDetail(usr)'>Click</button>
+    </div>
+  </div>
+  </div>
+</div>
+<div *ngIf="showUser;">
+    <div class="row" *ngIf="showSingleUser;else showSingleLoading">
+        <div class="col-md-2">{{usr.id}}</div>
+        <div class="col-md-2">{{usr.login}}</div>
+        <div class="col-md-8"><img src="{{usr.avatar_url}}" /></div>
+        <div><button class="btn-primary" (click)="getUsers()" >Back</button></div>
+      </div>
+       <ng-template #showSingleLoading>
+            Loading user ....
+        </ng-template>
+</div>
