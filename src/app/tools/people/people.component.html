@@ -1,0 +1,45 @@
+<div class="container">
+    <h1>People data</h1>
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">First Name</label>
+        <input type="text" class="form-control" name="fname" id="fname"
+         required [(ngModel)]="person.firstName" #f_name="ngModel" >
+      </div>
+      
+      <div *ngIf="f_name.dirty && f_name.invalid" class="alert alert-danger">
+          First Name is required.
+        </div>
+      <div class="form-group">
+          <label for="name">Last Name</label>
+          <input type="text" class="form-control" name="lname" required  [(ngModel)]="person.lastName" 
+          #l_name1="ngModel" >
+        </div>
+        <div *ngIf="l_name1.dirty && l_name1.invalid" class="alert alert-danger">
+            Last Name is required.
+          </div>
+        <div class="form-group">
+            <label for="name">Email</label>
+            <input type="text" class="form-control" name="email" required  [(ngModel)]="person.email"
+            #email1="ngModel" email >
+          </div>
+          
+          <div *ngIf="email1.dirty && email1.invalid" class="alert alert-danger">
+              Please enter valid email
+            </div>
+      <button [disabled]="!f.form.valid" (click)="open()"   type="submit" class="btn btn-success">Submit</button>
+ 
+    </form>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-4">FirstName</div>
+    <div class="col-4">LastName</div>
+    <div class="col-4">Email</div>  
+</div>
+<div class="row" *ngFor="let p of personList">
+    <div class="col-4">{{p.firstName}}</div>
+    <div class="col-4">{{p.lastName}}</div>
+    <div class="col-4">{{p.email}}</div>  
+</div>
